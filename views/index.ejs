@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <style>
+      body,html{
+        height:100%;
+
+      }
+    </style>
+  </head>
+  <body class="homePage"> 
+      <!-- 头部信息 -->
+      <% include ./common/nav %>
+      <div class="main">
+        <!-- 图形滚动 -->
+        <div class="wrap hide">
+          <div id="wraps" class="sliders">
+            <div data-num="1" class="slide hide"></div>
+            <div data-num="2" class="slide hide"></div>
+            <div data-num="3" class="slide hide"></div>
+            <div data-num="4" class="slide hide"></div>
+          </div>
+          <a href="javascript:;" id="btn-begin-blog">Let's Begin</a>
+        </div>
+        <!-- 主题内容 -->
+        <div class="content">
+          <div class="row container">
+            <div class="section">
+              <div class="articleList">
+                fdsfasdfasdfasdfasdfasdf
+                asdfasdfasdfadsfasdfasdf
+              </div>
+              <div class="articleList">
+              </div>
+              <div class="articleList">
+              </div>
+            </div>
+            <div class="aside">
+              <div class="newArticle"></div>
+              <div class="tag"></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- 底部内容 -->
+
+   <!--  <% if (locals.username) { %> 
+         <li><a href="#">        
+               <%= username %>          
+         </a></li>
+         <li><a href="/logout">安全退出</a></li> 
+       <% }else {%>
+       <p>没登陆</p>
+        <% }%> 
+          -->
+   <!-- <div class="main " > -->
+
+
+        <!-- <div class="content">
+          <div class="row">
+            <div class="section">
+              <div class="articleList">
+              </div>
+            </div>
+            <div class="aside">
+              <div class="newArticle"></div>
+              <div class="tag"></div>
+            </div>
+          </div>
+        </div>
+  </div>  -->
+	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+     <script type="text/javascript">
+       (function(){
+          $(function(){
+              var $wraps = $('#wraps').find('.slide');
+              var flag = 0;
+              $wraps.eq(flag).fadeIn(1000).siblings().hide();
+              move();
+              var key = setInterval(function(){
+                move();
+              },4500);
+              function move(){
+                flag = flag > $wraps.length-1 ? 0 : flag;
+                $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
+                flag++;
+              }
+
+              $('#btn-begin-blog').on('click', function(){
+                  $('.wrap').slideUp(800, function(){
+                    clearInterval(key);
+                  });
+
+              });
+
+          })
+       })();
+     </script>
+  </body>
+</html>
