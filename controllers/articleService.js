@@ -6,17 +6,13 @@ let	articleModel = require('../models/articleModel'),
 class article {
 
 	constructor(){
-		
 	}
-
 	edit (params, callback) {
 		let articleParams = {
 			_id: params.id
 		}
 		articleModel.query(articleParams,function(err, result){
 			console.log(err, result);
-
-
 		})	
 
 	}
@@ -120,12 +116,51 @@ class article {
 		});
 	}
 	delArticle (params, callback){
-		let params = {
+		let delParams = {
 			articleId : params.id
 		}
-		articleModel.delete(params, (err, result)=>{
-			callback(result)
+		let Promis = new Promise((resolve, reject) =>{
+			articleModel.query(delParams, (err, result)=>{
+				if(result.length==0){
+					reject(err);
+					// callback({ error_code: 0, data: "数据不存在！！！" });
+					return
+				}
+				resolve(result)
+
+			})
 		})
+
+		Promis.then(function(val){
+			articleModel.delete(delParams, (err, result)=>{
+				if(err){
+					callback({ error_code: 0,  data: '删除失败' });
+					return
+				}
+				callback({ error_code: 1, data: result.result });
+			})	
+		}).catch(function(){
+			callback({ error_code: 0, data: "数据不存在！！！" });
+		})
+		// articleModel.query(delParams, (err, result)=>{
+		// 	if(result.length==0){
+		// 		callback({ error_code: 0, data: "数据不存在！！！" });
+		// 		return
+		// 	}
+
+		// 	articleModel.delete(delParams, (err, result)=>{
+		// 		console.log(err, result.result);
+		// 		if(err){
+		// 			callback({ error_code: 0,  data: '删除失败' });
+		// 			return
+		// 		}
+		// 		callback({ error_code: 1, data: result.result });
+		// 	})
+
+		// })
+
+
+		
 
 	}
 }
