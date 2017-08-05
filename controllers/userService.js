@@ -49,7 +49,6 @@ class user {
 				res = { status: 0, data: '用户名已存在'};
 			}else{
 				userModel.insert(registerParams, function(err, result){
-					console.log(err, result);
 					if(result.length>0){
 						res=  { status: 1, data: result };
 					}else{
@@ -59,11 +58,6 @@ class user {
 			}
 			callback(res);
 		});
-
-
-		
-
-
 	}
 
 }
