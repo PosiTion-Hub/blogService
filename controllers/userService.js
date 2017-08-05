@@ -17,13 +17,13 @@ class user {
 			let res = {};
 			if(result.length>0){
 				 const token = jwt.sign({
-					uid:result._id,
-					name:result.username,
+					uid:result[0]._id,
+					name:result[0].username,
 					exp:Math.floor(Date.now()/1000) + 24 * 60 * 60//1 hours
 			      },config.secret);
-				res=  { error_code: 1, data: result, token: token };
+				res=  { status: 1, data: result[0], token: token };
 			}else{
-				res = { error_code: 0, data: '用户名或密码错误'};
+				res = { status: 0, data: '用户名或密码错误'};
 			}
 			callback(res);
 		});
@@ -46,14 +46,14 @@ class user {
 		userModel.query({username:registerParams.username},function(err, result){
 			let res = {};
 			if(result.length>0){
-				res = { error_code: 0, data: '用户名已存在'};
+				res = { status: 0, data: '用户名已存在'};
 			}else{
 				userModel.insert(registerParams, function(err, result){
 					console.log(err, result);
 					if(result.length>0){
-						res=  { error_code: 1, data: result };
+						res=  { status: 1, data: result };
 					}else{
-						res = { error_code: 0, data: '注册失败'};
+						res = { status: 0, data: '注册失败'};
 					}
 				});
 			}

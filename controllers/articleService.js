@@ -12,8 +12,8 @@ class article {
 			articleId: params.id
 		}
 		articleModel.query(articleParams,function(err, result){
-			console.log(err, result[0]);
-			let res=  { error_code: 1, data: result[0] };
+			console.log(err, result);
+			let res=  { status: 1, data: result[0] };
 			callback(res);
 		})	
 
@@ -34,10 +34,10 @@ class article {
 				if(result.length>0){
 					articleModel.update({articleId}, articleParams, function(err, result){
 						if(err){
-							res = { error_code: 0, data: '更新失败！！！'};
+							res = { status: 0, data: '更新失败！！！'};
 							return;
 						}
-						res=  { error_code: 1, data: result };
+						res=  { status: 1, data: result };
 						callback(res);
 						
 					});
@@ -45,7 +45,7 @@ class article {
 					
 					
 				}else{
-					res = { error_code: 0, data: '文章不存在！！！'};
+					res = { status: 0, data: '文章不存在！！！'};
 					callback(res);
 				}
 				// callback(res);
@@ -54,7 +54,7 @@ class article {
 		}else{
 			//新增 发布
 			if( !articleParams.title || !articleParams.content || !articleParams.tag || !articleParams.categories){
-				callback({ error_code: 2, data: '参数错误'});
+				callback({ status: 2, data: '参数错误'});
 				return;
 			}
 
@@ -62,7 +62,7 @@ class article {
 				console.log(err, result);
 				let res = {};
 				if(result.length>0){
-					res = { error_code: 0, data: '文章已存在！！！'};
+					res = { status: 0, data: '文章已存在！！！'};
 					callback(res);
 				}else{
 					articleParams.articleId = Date.now() //util.getDate();
@@ -71,10 +71,10 @@ class article {
 		 		// 	console.log(md4)
 					articleModel.insert(articleParams, (err, result)=>{
 						if(err){
-							res = { error_code: 0, data: '发布失败！！！'};
+							res = { status: 0, data: '发布失败！！！'};
 							return;
 						}
-						res= { error_code: 1, data: result };
+						res= { status: 1, data: result };
 						callback(res);
 					});
 				}
@@ -86,7 +86,7 @@ class article {
 		let whereParms = params.tag ?  {tag: params.tag} : {};
 		console.log(whereParms,1122);
 		articleModel.getCount(whereParms, (err, result) =>{
-			callback({ error_code: 1, data: {count: result} });	
+			callback({ status: 1, data: {count: result} });	
 		});
 	}
 	getArticleList(params, callback){
@@ -112,7 +112,7 @@ class article {
 				pageCunt:  val
 			}
 			articleModel.pageQuery(pageCtr, (err, result)=>{
-				callback({ error_code: 1, pageParams, data:  result });	
+				callback({ status: 1, pageParams, data:  result });	
 			});
 		});
 	}
@@ -124,7 +124,7 @@ class article {
 			articleModel.query(delParams, (err, result)=>{
 				if(result.length==0){
 					reject(err);
-					// callback({ error_code: 0, data: "数据不存在！！！" });
+					// callback({ status: 0, data: "数据不存在！！！" });
 					return
 				}
 				resolve(result)
@@ -135,27 +135,27 @@ class article {
 		Promis.then(function(val){
 			articleModel.delete(delParams, (err, result)=>{
 				if(err){
-					callback({ error_code: 0,  data: '删除失败' });
+					callback({ status: 0,  data: '删除失败' });
 					return
 				}
-				callback({ error_code: 1, data: result.result });
+				callback({ status: 1, data: result.result });
 			})	
 		}).catch(function(){
-			callback({ error_code: 0, data: "数据不存在！！！" });
+			callback({ status: 0, data: "数据不存在！！！" });
 		})
 		// articleModel.query(delParams, (err, result)=>{
 		// 	if(result.length==0){
-		// 		callback({ error_code: 0, data: "数据不存在！！！" });
+		// 		callback({ status: 0, data: "数据不存在！！！" });
 		// 		return
 		// 	}
 
 		// 	articleModel.delete(delParams, (err, result)=>{
 		// 		console.log(err, result.result);
 		// 		if(err){
-		// 			callback({ error_code: 0,  data: '删除失败' });
+		// 			callback({ status: 0,  data: '删除失败' });
 		// 			return
 		// 		}
-		// 		callback({ error_code: 1, data: result.result });
+		// 		callback({ status: 1, data: result.result });
 		// 	})
 
 		// })
