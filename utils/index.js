@@ -12,6 +12,7 @@ class formatDate {
 			split : '-'
 		}
 		this.config = Object.assign(config, opt);
+		console.log();
 		this.init();
 	}
 	init (){
@@ -26,8 +27,9 @@ class formatDate {
 		}
 	}
 	getDate (){
+		
 		var nDate = {};
-		var Dob = this.config.date;
+		var Dob = this.config.date || new Date();
 		nDate.y = Dob.getFullYear();
 		nDate.m = this.addZero(Dob.getMonth() + 1);
 		nDate.d = this.addZero(Dob.getDate());
@@ -45,5 +47,5 @@ class formatDate {
 
 //exports.formatDate = formatDate;
 
-exports.getDate = new formatDate().getDate;
-//console.log();
+exports.getDate = new formatDate({});
+exports.curDate = new formatDate({}).getDate()

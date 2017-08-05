@@ -9,10 +9,12 @@ class article {
 	}
 	edit (params, callback) {
 		let articleParams = {
-			_id: params.id
+			articleId: params.id
 		}
 		articleModel.query(articleParams,function(err, result){
-			console.log(err, result);
+			console.log(err, result[0]);
+			let res=  { error_code: 1, data: result[0] };
+			callback(res);
 		})	
 
 	}
@@ -23,9 +25,8 @@ class article {
 			tag: params.tag,
 			content: params.content,
 			categories: params.categories,
-			updataDate: util.getDate()
+			updataDate: Date.now() //util.getDate()
 		}
-		
 		// 编辑 发布
 		if(articleId){
 			articleModel.query({articleId},function(err, result){
@@ -64,7 +65,7 @@ class article {
 					res = { error_code: 0, data: '文章已存在！！！'};
 					callback(res);
 				}else{
-					articleParams.articleId = util.getDate();
+					articleParams.articleId = Date.now() //util.getDate();
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)
