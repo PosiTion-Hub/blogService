@@ -2,9 +2,7 @@ let	articleModel = require('../models/articleModel'),
 	crypto = require('crypto'),
 	util = require('../utils')
  	config = require("../config");
-
 class article {
-
 	constructor(){
 	}
 	edit (params, callback) {
@@ -159,9 +157,6 @@ class article {
 		// 	})
 
 		// })
-
-
-		
 
 	}
 }

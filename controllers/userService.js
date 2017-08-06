@@ -4,7 +4,6 @@ let	userModel = require('../models/userModel'),
  	config = require("../config");
 class user {
 	constructor(){
-		
 	}
 	login (params, callback) {
 		if(!params.username || !params.userpwd){
@@ -59,6 +58,5 @@ class user {
 			callback(res);
 		});
 	}
-
 }
 exports.service = user;

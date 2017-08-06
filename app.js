@@ -16,7 +16,6 @@ const logout = require('./routes/logout');
 const register = require('./routes/register');
 //api
 const api = require('./routes/api');
-
 const conf = require('./config');
 
 
