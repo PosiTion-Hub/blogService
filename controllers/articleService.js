@@ -67,6 +67,8 @@ class article {
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)
+		 			console.log(articleParams)
+		 			articleParams = Object.assign(articleParams,params);
 					articleModel.insert(articleParams, (err, result)=>{
 						if(err){
 							res = { status: 0, data: '发布失败！！！'};

@@ -19,14 +19,13 @@ class user {
 					uid:result[0]._id,
 					name:result[0].username,
 					exp:Math.floor(Date.now()/1000) + 24 * 60 * 60//1 hours
-			      },config.secret);
+			      }, config.secret);
 				res=  { status: 1, data: result[0], token: token };
 			}else{
 				res = { status: 0, data: '用户名或密码错误'};
 			}
 			callback(res);
 		});
-
 	}
 	register (params,callback){
 		if(!params.username || !params.userpwd){
