@@ -23,7 +23,8 @@ class article {
 			tag: params.tag,
 			content: params.content,
 			categories: params.categories,
-			updataDate: Date.now() //util.getDate()
+			updataDate: Date.now(), //util.getDate()
+			status:params.status
 		}
 		// 编辑 发布
 		if(articleId){
@@ -116,7 +117,7 @@ class article {
 			});
 		});
 	}
-	delArticle (params, callback){
+	delArticleById (params, callback){
 		let delParams = {
 			articleId : params.id
 		}
@@ -143,23 +144,21 @@ class article {
 		}).catch(function(){
 			callback({ status: 0, data: "数据不存在！！！" });
 		})
-		// articleModel.query(delParams, (err, result)=>{
-		// 	if(result.length==0){
-		// 		callback({ status: 0, data: "数据不存在！！！" });
-		// 		return
-		// 	}
-
-		// 	articleModel.delete(delParams, (err, result)=>{
-		// 		console.log(err, result.result);
-		// 		if(err){
-		// 			callback({ status: 0,  data: '删除失败' });
-		// 			return
-		// 		}
-		// 		callback({ status: 1, data: result.result });
-		// 	})
-
-		// })
-
+	}
+	
+	delArticle (params, callback){
+		
+		console.log(params)
+		let delParams = {
+			articleId: {$in:params.articleId}
+		}
+		articleModel.delete(delParams, (err, result)=>{
+			if(err){
+				callback({ status: 0,  data: '删除失败' });
+				return
+			}
+			callback({ status: 1, data: result.result });
+		})	
 	}
 }
 exports.service = article;
