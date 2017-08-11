@@ -7,7 +7,6 @@ class tag {
 	}
 	
 	add(params, callback){
-		
 		let tagName = params.tagName.toUpperCase();
 		let Promis = new Promise((resolve, reject) =>{
 			
@@ -26,18 +25,26 @@ class tag {
 				tagId: Date.now() 
 			}
 			tagModel.insert(params,(err, result) => {
-//				console.log(err, result)
 				callback({ status: 1, data:  result });	
 			})
 			
 		}).catch(function(err){
 			callback({ status: 0, data:  err });	
 		})
-		
-		
-		
+	}
+	
+	getTag(params, callback){
+		tagModel.query( (err, result) =>{
+				
+			if(result.length>0){
+				callback({ status: 1, data:  result });
+			}else{
+				callback({ status: 0, data:  result });
+			}
+		});
 		
 	}
+	
 	removeById(){
 		
 		
