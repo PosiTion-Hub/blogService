@@ -45,8 +45,36 @@ class tag {
 		
 	}
 	
-	removeById(){
-		
+	removeById(params, callback){
+		let delParams = {
+			tagId : params.id
+		}
+		let Promis = new Promise((resolve, reject) =>{
+			tagModel.query(delParams, (err, result)=>{
+				console.log(err,result)
+				
+				
+				if(result.length==0){
+					reject(err);
+					// callback({ status: 0, data: "数据不存在！！！" });
+					return
+				}
+				resolve(result)
+
+			})
+		})
+
+		Promis.then(function(val){
+			tagModel.delete(delParams, (err, result)=>{
+				if(err){
+					callback({ status: 0,  data: '删除失败' });
+					return
+				}
+				callback({ status: 1, data: result.result });
+			})	
+		}).catch(function(){
+			callback({ status: 0, data: "数据不存在！！！" });
+		})
 		
 		
 	}

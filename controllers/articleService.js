@@ -160,5 +160,45 @@ class article {
 			callback({ status: 1, data: result.result });
 		})	
 	}
+	
+	searchArticle(params, callback){
+		let Params = {
+			key:{}
+		}
+		if(params.categories){
+			Params.key.categories = params.categories.toUpperCase()
+		}
+		if(params.keyword){
+			Params.key['$or'] = [{"title": new RegExp(params.keyword, 'i')}]
+		}
+		
+		
+		let Promis = new Promise((resolve, reject) =>{
+			articleModel.query(Params.key, function(err, result){
+				if(err){
+					 reject(err) 
+				}else{
+					resolve(result);
+				}
+			})
+		})
+		
+		Params.pageSize = params.pageSize || 5
+		Params.pageCur = params.pageCur ||1
+		Params.pageStart = Params.pageSize * (Params.pageCur - 1);
+		
+		Promis.then((val)=>{
+			let pageParams = {
+				pageSize: Params.pageSize,
+				pageCur:  Params.pageCur ,
+				pageCunt:  val.length
+			}
+			articleModel.pageQuery(Params, (err, result)=>{
+				callback({ status: 1, pageParams, data:  result });	
+			});
+		});
+		
+		
+	}
 }
 exports.service = article;
