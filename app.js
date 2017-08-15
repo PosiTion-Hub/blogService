@@ -52,9 +52,9 @@ app.use(session({ secret: conf.secret ,resave: true,
 
 
 app.use('/', pages);
-// app.use('/login', login);
-// app.use('/logout', logout);
-// app.use('/register', register);
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/register', register);
 app.use('/api', api);
 
 

@@ -22,7 +22,7 @@
             <div data-num="3" class="slide hide"></div>
             <div data-num="4" class="slide hide"></div>
           </div>
-          <a href="javascript:;" id="btn-begin-blog">Let's Begin</a>
+          <a href="/login" id="btn-begin-blog">Let's Begin</a>
         </div>
         <!-- 主题内容 -->
         <div class="content">
@@ -75,27 +75,27 @@
 	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
      <script type="text/javascript">
        (function(){
-          $(function(){
-              var $wraps = $('#wraps').find('.slide');
-              var flag = 0;
-              $wraps.eq(flag).fadeIn(1000).siblings().hide();
-              move();
-              var key = setInterval(function(){
-                move();
-              },4500);
-              function move(){
-                flag = flag > $wraps.length-1 ? 0 : flag;
-                $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
-                flag++;
-              }
-
-              $('#btn-begin-blog').on('click', function(){
-                  $('.wrap').slideUp(800, function(){
-                    clearInterval(key);
-                  });
-              });
-
-          })
+//        $(function(){
+//            var $wraps = $('#wraps').find('.slide');
+//            var flag = 0;
+//            $wraps.eq(flag).fadeIn(1000).siblings().hide();
+//            move();
+//            var key = setInterval(function(){
+//              move();
+//            },4500);
+//            function move(){
+//              flag = flag > $wraps.length-1 ? 0 : flag;
+//              $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
+//              flag++;
+//            }
+//
+//            $('#btn-begin-blog').on('click', function(){
+//                $('.wrap').slideUp(800, function(){
+//                  clearInterval(key);
+//                });
+//            });
+//
+//        })
        })();
      </script>
   </body>

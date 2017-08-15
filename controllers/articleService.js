@@ -147,8 +147,7 @@ class article {
 	}
 	
 	delArticle (params, callback){
-		
-		console.log(params)
+		//当个与批量删除 单个需要传id数组
 		let delParams = {
 			articleId: {$in:params.articleId}
 		}
@@ -197,7 +196,6 @@ class article {
 				callback({ status: 1, pageParams, data:  result });	
 			});
 		});
-		
 		
 	}
 }
