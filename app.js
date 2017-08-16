@@ -58,7 +58,7 @@ app.use('/register', register);
 app.use('/api', api);
 
 
-var server = app.listen(8889,()=>{
+var server = app.listen(8888,()=>{
     var port = server.address().port;
     console.log("应用实例，访问地址为 http://%s:%s", 'localhost', port)
 })

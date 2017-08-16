@@ -149,7 +149,7 @@ class article {
 	delArticle (params, callback){
 		//当个与批量删除 单个需要传id数组
 		let delParams = {
-			articleId: {$in:params.articleId}
+			articleId: {$in:params.id}
 		}
 		articleModel.delete(delParams, (err, result)=>{
 			if(err){
@@ -170,7 +170,7 @@ class article {
 		if(params.keyword){
 			Params.key['$or'] = [{"title": new RegExp(params.keyword, 'i')}]
 		}
-		
+		 
 		
 		let Promis = new Promise((resolve, reject) =>{
 			articleModel.query(Params.key, function(err, result){
