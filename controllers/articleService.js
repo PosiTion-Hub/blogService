@@ -22,6 +22,7 @@ class article {
 			title: params.title,
 			tag: params.tag,
 			content: params.content,
+			desc: params.desc,
 			categories: params.categories,
 			updataDate: Date.now(), //util.getDate()
 			status:params.status
@@ -31,6 +32,7 @@ class article {
 			articleModel.query({articleId},function(err, result){
 				let res = {};
 				if(result.length>0){
+					console.log(articleParams)
 					articleModel.update({articleId}, articleParams, function(err, result){
 						if(err){
 							res = { status: 0, data: '更新失败！！！'};
@@ -65,6 +67,7 @@ class article {
 					callback(res);
 				}else{
 					articleParams.articleId = Date.now() //util.getDate();
+					articleParams.creatDate = Date.now()
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)

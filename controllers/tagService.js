@@ -22,7 +22,8 @@ class tag {
 		Promis.then(function(){
 			let params = {
 				tagName,
-				tagId: Date.now() 
+				tagId: Date.now(),
+				creatDate: Date.now(),
 			}
 			tagModel.insert(params,(err, result) => {
 				callback({ status: 1, data:  result });	
@@ -49,6 +50,7 @@ class tag {
 		let delParams = {
 			tagId : params.id
 		}
+			console.log(delParams)
 		let Promis = new Promise((resolve, reject) =>{
 			tagModel.query(delParams, (err, result)=>{
 				console.log(err,result)
@@ -56,7 +58,6 @@ class tag {
 				
 				if(result.length==0){
 					reject(err);
-					// callback({ status: 0, data: "数据不存在！！！" });
 					return
 				}
 				resolve(result)

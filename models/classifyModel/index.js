@@ -11,6 +11,6 @@ module.exports = new ClassIfy('classIfy', {
 	classIfyId: { type: Number },   
     classIfyName: {type: String},									 //分类
     creatDate: { type: Date,  default: Date.now()},           //创建时间
-    updataDate: { type:Date,  default: Date.now()},
+//  updataDate: { type:Date,  default: Date.now()},
 });
 
