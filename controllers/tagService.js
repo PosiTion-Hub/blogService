@@ -33,7 +33,7 @@ class tag {
 		})
 	}
 	
-	getTag(params, callback){
+	get (params, callback){
 		tagModel.query( (err, result) =>{
 				
 			if(result.length>0){
