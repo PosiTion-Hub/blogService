@@ -2,6 +2,7 @@ let	articleModel = require('../models/articleModel'),
 	crypto = require('crypto'),
 	util = require('../utils')
  	config = require("../config");
+ 	console.log()
 class article {
 	constructor(){
 	}
@@ -24,7 +25,7 @@ class article {
 			content: params.content,
 			desc: params.desc,
 			categories: params.categories,
-			updataDate: Date.now(), //util.getDate()
+			updataDate: util.curDate, //util.getDate()
 			status:params.status
 		}
 		// 编辑 发布
@@ -67,11 +68,10 @@ class article {
 					callback(res);
 				}else{
 					articleParams.articleId = Date.now() //util.getDate();
-					articleParams.creatDate = Date.now()
+					articleParams.creatDate = util.curDate
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)
-		 			console.log(articleParams)
 		 			articleParams = Object.assign(articleParams,params);
 					articleModel.insert(articleParams, (err, result)=>{
 						if(err){
@@ -88,7 +88,7 @@ class article {
 	}
 	getTagCount (params, callback){
 		let whereParms = params.tag ?  {tag: params.tag} : {};
-		console.log(whereParms,1122);
+		
 		articleModel.getCount(whereParms, (err, result) =>{
 			callback({ status: 1, data: {count: result} });	
 		});
@@ -97,7 +97,8 @@ class article {
 		let pageCtr = {
 			pageSize: params.pageSize || 5,
 			pageCur: params.pageCur,
-			key: params.tag ? {tag : params.tag} : {}
+//			key: params.tag ? {tag : params.tag} : {}
+			key: params.status ==1 ? {status : 1,isDraft:0} : {}
 		}
 		pageCtr.pageStart = pageCtr.pageSize * (pageCtr.pageCur - 1);
 		let Promis = new Promise((resolve, reject) =>{

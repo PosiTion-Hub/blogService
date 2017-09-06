@@ -10,10 +10,10 @@ const session = require('express-session');
 const pages = require('./routes/pages');
 
 // yemian
-const index = require('./routes/index');
-const login = require('./routes/login'); 
-const logout = require('./routes/logout');
-const register = require('./routes/register');
+const index = require('./routes/pages/index');
+//const login = require('./routes/login'); 
+//const logout = require('./routes/logout');
+//const register = require('./routes/register');
 //api
 const api = require('./routes/api');
 const conf = require('./config');
@@ -52,9 +52,9 @@ app.use(session({ secret: conf.secret ,resave: true,
 
 
 app.use('/', pages);
-app.use('/login', login);
-app.use('/logout', logout);
-app.use('/register', register);
+//app.use('/login', login);
+//app.use('/logout', logout);
+//app.use('/register', register);
 app.use('/api', api);
 
 
