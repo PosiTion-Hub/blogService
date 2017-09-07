@@ -128,6 +128,9 @@ body {
     font-size: 16px;
     background-color: #efefef;
 }
+.hljs{
+	border-radius: 5px ;
+}
 .hide{
     display: none;
 }
@@ -399,18 +402,75 @@ body {
  .classify div span{
  	display: inline-block;
  	padding:5px 8px;
- 	border:1px solid #efefef;
+ 	border:1px solid #eaeaea;
+ 	margin-top: 10px;
  }
 
+.classifyItems{
+	padding: 10px 0;
+}
 
 
+/*文章详情页*/
+.artContent{
+	background-color: #fff;
+	padding:10px;
+	border-radius: 5px;
+}
+.artContent .art-title{
+	margin: 20px auto 10px;
+	line-height: normal;
+	text-align: center;
+}
+.artContent .date{
+	font-size: 14px;
+	text-align: center;
+	color: #666;
+}
+.tag{
+	padding:10px 0;
+	margin: 10px auto;
+	text-align: center;
+}
+.tag span{
+	font-size: 13px;
+	padding:2px 5px;
+	height: 22px;
+	border-radius:0 3px 3px 0;
+	color:#fff;
+	margin-left: 15px;
+	display: inline-block;
+	background-color: #ff945c;
+	padding-left: 8px;
+	position: relative;
+}
+.tag span:after{
+	content: '';
+	position: absolute;
+	top:0;
+	left:0;
+	border: 11px solid transparent;
+	border-right-color: #ff945c;
+	left:-22px;
+	top:0px;
+}
 
-
-
-
-
-
-
+.tag span:before{
+	content: '';
+	z-index: 111;
+	position: absolute;
+	background-color: #fff;
+	width:4px;
+	height: 4px;
+	border-radius: 50%;
+	left:-2px;
+	margin-top: -2px;
+	top:50%;
+	
+}
+.art-content{
+	
+}
 
 
 

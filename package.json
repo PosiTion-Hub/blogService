@@ -12,9 +12,10 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
+    "express-session": "latest",
+    "marked": "^0.3.6",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "express-session": "latest"
+    "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
     "jsonwebtoken": "^7.4.1"

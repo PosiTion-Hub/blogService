@@ -19,7 +19,7 @@ class classify {
 				}
 			});
 		})
-		Promis.then(function(){
+		Promis.then(()=>{
 			let params = {
 				classIfyName,
 				classIfyId: Date.now() 

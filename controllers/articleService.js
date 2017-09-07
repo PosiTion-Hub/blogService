@@ -43,7 +43,6 @@ class article {
 						callback(res);
 						
 					});
-					console.log(res)
 					
 					
 				}else{

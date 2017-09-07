@@ -8,9 +8,6 @@
         height:100%;
       }
     </style>
-    <script type="text/javascript">
-
-    </script>
   </head>
   <body class="homePage"> 
       <!-- 头部信息 -->
@@ -63,13 +60,21 @@
               </div>
               <div class="classify">
               	<strong class="wt">分类</strong>
-								<div>
-									
-									
+								<div class="classifyItems">
+									<% for(var j=0; j<classify.length; j++) {%>
+										<span class="classify-item"><%= classify[j].classIfyName %></span>
+										<% } %>
 								</div>
               	
               </div>
-              <div class="tag"></div>
+              <div class="tag classify">
+              	<strong class="wt">标签</strong>
+								<div class="classifyItems">
+									<% for(var j=0; j<tags.length; j++) {%>
+										<span class="classify-item"><%= tags[j].tagName %></span>
+										<% } %>
+								</div>
+              </div>
             </div>
           </div>
         </div>
