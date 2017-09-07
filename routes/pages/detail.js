@@ -22,7 +22,6 @@ router.get('/:id', (req, res, next) => {
 	let artId = req.params.id
 	art.edit({id:artId},function(d){
 		
-		console.log(marked(d.data.content))
 		res.locals.artInfo = {
 			title: d.data.title,
 			creatDate: new Date(d.data.creatDate).format("yyyy-M-d h:m:s") ,
