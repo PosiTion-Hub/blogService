@@ -170,13 +170,18 @@ class article {
 		let Params = {
 			key:{}
 		}
+//		Params.key = Object.assign(Params.key,params)
 		if(params.categories){
 			Params.key.categories = params.categories.toUpperCase()
 		}
 		if(params.keyword){
 			Params.key['$or'] = [{"title": new RegExp(params.keyword, 'i')}]
 		}
-		 
+		if(params.status){
+			Params.key.status = 1 
+			Params.key.isDraft = 0 
+		}
+		 console.log(Params.key)
 		
 		let Promis = new Promise((resolve, reject) =>{
 			articleModel.query(Params.key, function(err, result){

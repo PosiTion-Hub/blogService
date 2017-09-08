@@ -13,7 +13,7 @@ const router = express.Router(),
 	  pedantic: false,
 	  sanitize: false,
 	  smartLists: true,
-	  smartypants: false
+	  smartypants: false,
 	});
 let art =  require('../../controllers/articleService').service;
 art = new art()
@@ -21,7 +21,6 @@ art = new art()
 router.get('/:id', (req, res, next) => {
 	let artId = req.params.id
 	art.edit({id:artId},function(d){
-		
 		res.locals.artInfo = {
 			title: d.data.title,
 			creatDate: new Date(d.data.creatDate).format("yyyy-M-d h:m:s") ,
@@ -30,8 +29,6 @@ router.get('/:id', (req, res, next) => {
 		}
 		res.render('details', { title: '文章详情页'});
 	})
-	
-	
 });
 router.get('/', (req, res) => {
 	console.log('44444444')

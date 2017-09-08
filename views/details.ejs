@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='/css/style.css' />
     <!--<link rel="stylesheet" href="/css/common/monokai-sublime.css">-->
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css"/>
@@ -10,31 +11,19 @@
       <!-- 头部信息 -->
       <% include ./common/nav %>
       <div class="main">
-        <!-- 图形滚动 -->
-        <div class="wrap hide">
-          <div id="wraps" class="sliders">
-            <div data-num="1" class="slide hide"></div>
-            <div data-num="2" class="slide hide"></div>
-            <div data-num="3" class="slide hide"></div>
-            <div data-num="4" class="slide hide"></div>
-          </div>
-          <a href="javascript:;" id="btn-begin-blog">Let's Begin</a>
-        </div>
         <!-- 主题内容 -->
         <div class="content">
           <div class="row container">
             <div class="section artContent">
+            	<i class="doubleClick">全屏<br/>阅读</i>
               <h2 class="art-title"><%= artInfo.title %> </h2>
               <div class="date"><%= artInfo.creatDate %> </div>
               <div class="tag">
               		<% for(var a=0; a<artInfo.tag.length;a++) {%>
 	              		<span class="tag<%= a%4 %>"><%= artInfo.tag[a] %></span>
 	              	<% } %>
-              	
               </div>
               <div id="content" class="art-content"><%- artInfo.content %> </div>
-              
-              
             </div>
             <div class="aside">
               <div class="search">
@@ -44,47 +33,93 @@
                     <input type="submit" value="搜索" class="search-btn">
                 </form>
               </div>
-            
+            </div>
+            <!--go top-->
+            <div class="goTop hide">
+            	回到<br />顶部
             </div>
           </div>
         </div>
         
       </div>
+      <% include ./common/footer %>
       <!-- 底部内容 -->
-
-   <!--  <% if (locals.username) { %> 
-         <li><a href="#">        
-               <%= username %>          
-         </a></li>
-         <li><a href="/logout">安全退出</a></li> 
-       <% }else {%>
-       <p>没登陆</p>
-        <% }%> 
-          -->
-   <!-- <div class="main " > -->
-
-
-        <!-- <div class="content">
-          <div class="row">
-            <div class="section">
-              <div class="articleList">
-              </div>
-            </div>
-            <div class="aside">
-              <div class="newArticle"></div>
-              <div class="tag"></div>
-            </div>
-          </div>
-        </div>
-  </div>  -->
 	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	   <!--<script src="/js/marked.js" type="text/javascript" charset="utf-8"></script>-->
 	   <script type="text/javascript">
 	   		$(function(){
+	   			$('.doubleClick').on('dblclick', function(){
+	   				var _thisParent = $(this).parents('.content');
+	   				
+	   				if(_thisParent.hasClass('isfull')){
+	   					exitFullscreen(document.querySelector('.artContent'))
+	   					_thisParent.removeClass('isfull')
+	   					$('.artContent').css('overflow-y','hidden')
+	   						$(this).html('全屏<br/>阅读')
+	   				}else{
+	   					launchFullscreen(document.querySelector('.artContent'));
+	   					$('.artContent').css('overflow-y','scroll')
+	   						_thisParent.addClass('isfull')
+	   						$(this).html('退出<br />全屏')
+	   				}
+						return false;
+	   			})
+	   			$(function() {
+				    $(window).scroll(function() {
+				        if ($(window).scrollTop() > $(window).height())
+				            $('.goTop').show();
+				        else
+				            $('.goTop').hide();
+				    });
+				    $('.goTop').click(function() {
+				        $('html, body').animate({scrollTop: 0}, 1000);
+				    });
+				});
+	   			window.onresize = function(){
+						if(!checkFull()){
+							$('.content').removeClass('isfull')
+							$(this).html('全屏<br/>阅读')
+	   					$('.artContent').css('overflow-y','hidden')
+						}
+					}
+					
+					function checkFull(){
+						var isFull =  document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+						
+						if(isFull === undefined) isFull = false;
+							return isFull;
+					}
 	   			
-//	   			 document.getElementById('content').innerHTML = marked('# Marked in browser\n\nRendered by **marked**.');
+	   			$(document).on('dblclick', function(){
+	   					if($('.content').hasClass('isfull')){
+	   						exitFullscreen(document.documentElement)
+	   						$('.content').removeClass('isfull')
+	   						$('.artContent').css('overflow-y','hidden')
+	   						$(this).html('全屏<br/>阅读')
+	   					}
+	   					$(this).html('全屏<br/>阅读')
+	   			})
 	   			
+	   			function exitFullscreen() {
+						 if(document.exitFullscreen) {
+						  document.exitFullscreen();
+						 } else if(document.mozCancelFullScreen) {
+						  document.mozCancelFullScreen();
+						 } else if(document.webkitExitFullscreen) {
+						  document.webkitExitFullscreen();
+						 }
+						}
 	   			
+	   			function launchFullscreen(element) {
+					 if(element.requestFullscreen) {
+					  element.requestFullscreen();
+					 } else if(element.mozRequestFullScreen) {
+					  element.mozRequestFullScreen();
+					 } else if(element.webkitRequestFullscreen) {
+					  element.webkitRequestFullscreen();
+					 } else if(element.msRequestFullscreen) {
+					  element.msRequestFullscreen();
+					 }
+					}
 	   		})
 	   </script>
 	   	
@@ -145,44 +180,6 @@
 	 		console.log(b)
      
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-//     (function(){
-//        $(function(){
-//            var $wraps = $('#wraps').find('.slide');
-//            var flag = 0;
-//            $wraps.eq(flag).fadeIn(1000).siblings().hide();
-//            move();
-//            var key = setInterval(function(){
-//              move();
-//            },4500);
-//            function move(){
-//              flag = flag > $wraps.length-1 ? 0 : flag;
-//              $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
-//              flag++;
-//            }
-//
-//            $('#btn-begin-blog').on('click', function(){
-//                $('.wrap').slideUp(800, function(){
-//                  clearInterval(key);
-//                });
-//                
-//                $('.navBar').addClass('navBg')
-//            });
-//
-//        })
-//     })();
      </script>
   </body>
 </html>

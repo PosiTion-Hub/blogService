@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='/css/style.css' />
+    <style>
+      body,html{
+        height:100%;
+      }
+    </style>
+  </head>
+  <body class="homePage"> 
+      <!-- 头部信息 -->
+      <% include ./common/nav %>
+      <div class="main">
+        <!-- 主题内容 -->
+        <div class="content">
+          <div class="row container">
+            <div class="section searchBox">
+            	<!--<h2>通过关键词<span style="color:red"><%= keyws %></span>搜索到的结果是：</h2>-->
+            	
+            	<% if(searchList.length>0) {%>
+            	
+              <% for(var i=0; i<searchList.length; i++) {%>
+              <div class="searchList">
+              		<div><a href="/detail/<%= searchList[i].articleId %>"><%= (new Date(searchList[i].creatDate).format("yyyy-M-d h:m:s")) %><%= searchList[i].title %></a></div>
+              </div>
+              <% } %>
+              <% }else{ %>
+              		<div class="noData">未找到相关内容</div>
+              <% } %>
+            </div>
+            <div class="aside">
+              <div class="search">
+              	<strong class="wt">关键词搜索</strong>
+              	<form class="wc" action="/search" method="get">
+                    <input type="text" class="search-text" name="keyword" value="" placeholder="请输入关键词">
+                    <input type="submit" value="搜索" class="search-btn">
+                </form>
+              </div>
+              <div class="classify">
+              	
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- 底部内容 -->
+       <% include ./common/footer %>
+	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+	   
+     <script type="text/javascript"> $('.navBar').addClass('navBg')
+     	    Date.prototype.format=function(fmt='yyyy-MM-dd') {         
+    let o = {         
+    "M+" : addZero(this.getMonth()+1), //月份         
+    "d+" : addZero(this.getDate()), //日         
+    "h+" : addZero(this.getHours()),//%12 == 0 ? 12 : this.getHours()%12, //小时         
+    "H+" : addZero(this.getHours()), //小时         
+    "m+" : addZero(this.getMinutes()), //分         
+    "s+" : addZero(this.getSeconds()), //秒         
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
+    "S" : this.getMilliseconds() //毫秒         
+    };         
+    let week = {         
+    "0" : "/u65e5",         
+    "1" : "/u4e00",         
+    "2" : "/u4e8c",         
+    "3" : "/u4e09",         
+    "4" : "/u56db",         
+    "5" : "/u4e94",         
+    "6" : "/u516d"        
+    };         
+    if(/(y+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
+    }         
+    if(/(E+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[this.getDay()+""]);         
+    }         
+    for(let k in o){         
+        if(new RegExp("("+ k +")").test(fmt)){         
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+        }         
+    }         
+    return fmt;         
+} 
+function addZero(n){
+	
+	return n > 9 ? n : '0' + n;
+	
+}
+     var arr = [{"_id":"59afabc1e533131e0c82294e","title":"666","tag":"HTML,JAVASCRIPT,测试","content":"> 6666666666666666666666666666666666666666666666666666666666666","desc":"666666666666666666","categories":"CSS预处理","articleId":1504684993811,"__v":0,"updataDate":"2017-09-06T08:02:47.000Z","creatDate":"2017-09-06T08:02:47.000Z","isDraft":0,"status":1},{"_id":"59afaa2809b8522a500b51b5","title":"5555555555555555555","tag":"NODE,CSS,HTML","content":"555555555555555555555555555555555555555","desc":"555555555555555555555555555555","categories":"构建工具","articleId":1504684584401,"__v":0,"updataDate":"2017-09-06T07:56:24.399Z","creatDate":"2017-09-06T07:56:24.401Z","isDraft":0,"status":1},{"_id":"59afaa1c09b8522a500b51b4","title":"44444444444444444444444444","tag":"CSS,HTML,JAVASCRIPT,测试","content":"44444444444444444444444444444444444444","desc":"4444444444444444444444","categories":"NODE","articleId":1504684572548,"__v":0,"updataDate":"2017-09-06T07:56:12.546Z","creatDate":"2017-09-06T07:56:12.548Z","isDraft":0,"status":1},{"_id":"59afaa0f09b8522a500b51b3","title":"3333333333333333333","tag":"NODE,HTML","content":"33333333333333333333333333333333333333333333333333","desc":"33333333333333333333","categories":"NODE","articleId":1504684559899,"__v":0,"updataDate":"2017-09-06T07:55:59.896Z","creatDate":"2017-09-06T07:55:59.899Z","isDraft":0,"status":1},{"_id":"59afa9ff09b8522a500b51b2","title":"22222222222222222222222222","tag":"NODE,CSS","content":"22222222222222222222222222222222222222222222","desc":"22222222222222222222222","categories":"HTML","articleId":1504684543659,"__v":0,"updataDate":"2017-09-06T07:55:43.657Z","creatDate":"2017-09-06T07:55:43.659Z","isDraft":0,"status":1}]
+     
+     var b = arr.filter((a,b,c)=>{
+//	 		console.log(new Date(a.creatDate).format("yyyy-M-d h:m:s"))
+//	 		a.creatDate = new Date(a.creatDate).format("yyyy-M-d h:m:s")
+	 		 
+	 		console.log(new Date(a.creatDate).format("yyyy-M-d h:m:s"))
+	 		a.creatDate = new Date(a.creatDate).format("yyyy-M-d h:m:s")
+	 		console.log(a.creatDate)
+	 		return a
+	 	})
+
+     </script>
+  </body>
+</html>
