@@ -361,7 +361,7 @@ code{
 	.aside{
 		/*display: none;
 		width: 0;*/
-		transform: translateX(350px);
+		transform: translateX(400px);
 		overflow: hidden;
 		
 	}
