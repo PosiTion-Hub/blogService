@@ -69,8 +69,6 @@ class article {
 					articleParams.articleId = Date.now() //util.getDate();
 					articleParams.creatDate = util.curDate
 					
-					
-					console.log(articleParams)
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)
@@ -102,6 +100,8 @@ class article {
 //			key: params.tag ? {tag : params.tag} : {}
 			key: params.status ==1 ? {status : 1,isDraft:0} : {}
 		}
+		if(params.tag) pageCtr.key.tag = params.tag
+		if(params.classify) pageCtr.key.classify = params.classify
 		pageCtr.pageStart = pageCtr.pageSize * (pageCtr.pageCur - 1);
 		let Promis = new Promise((resolve, reject) =>{
 			articleModel.getCount(pageCtr.key, (err, result) =>{

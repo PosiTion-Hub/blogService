@@ -20,6 +20,7 @@ art = new art()
 /* GET home page. */
 router.get('/:id', (req, res, next) => {
 	let artId = req.params.id
+		console.log(artId)
 	art.edit({id:artId},function(d){
 		res.locals.artInfo = {
 			title: d.data.title,

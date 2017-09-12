@@ -10,6 +10,7 @@ const session = require('express-session');
 const pages = require('./routes/pages');
 const detail = require('./routes/pages/detail');
 const search = require('./routes/pages/search');
+const classIfyAndTags = require('./routes/pages/classIfyAndTags');
 
 // yemian
 //const index = require('./routes/pages/index');
@@ -54,6 +55,9 @@ app.use(session({ secret: conf.secret ,resave: true,
 //页面路由
 app.use('/detail', detail);
 app.use('/search', search);
+app.use('/classify', classIfyAndTags);
+app.use('/tags', classIfyAndTags);
+app.use('/Article', classIfyAndTags);
 app.use('/', pages);
 //app.use('/logins', login);
 //app.use('/logout',           logout);

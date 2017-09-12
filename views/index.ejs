@@ -3,7 +3,6 @@
   <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/common/rest.css"/>
     <link rel='stylesheet' href='/css/style.css' />
     <style>
       /*body,html{
@@ -30,6 +29,17 @@
         <!-- 主题内容 -->
         <div class="content">
           <div class="row container">
+          	<blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow" style="visibility: visible;">
+        
+
+			        <a href="/" title="网站首页">首页<span class="layui-box">&gt;</span></a>
+<!--			
+			        <a href="/Article" title="文章专栏">文章专栏<span class="layui-box">&gt;</span></a>
+			
+			    <a><cite>C#基础</cite></a>-->
+			
+			    </blockquote>
+          	
             <div class="section">
               <% var arr = [] %>
               <% for(var i=0; i<artList.length; i++) {%>
@@ -68,7 +78,7 @@
               	<strong class="wt">分类</strong>
 								<div class="classifyItems">
 									<% for(var j=0; j<classify.length; j++) {%>
-										<span class="classify-item"><%= classify[j].classIfyName %></span>
+										<span class="classify-item"><a href="/classify?classify=<%= classify[j].classIfyName %>"><%= classify[j].classIfyName %></a></span>
 										<% } %>
 								</div>
               	
@@ -77,7 +87,7 @@
               	<strong class="wt">标签</strong>
 								<div class="classifyItems">
 									<% for(var j=0; j<tags.length; j++) {%>
-										<span class="classify-item"><%= tags[j].tagName %></span>
+										<span class="classify-item"><a href="/tags?tag=<%= tags[j].tagName %>"><%= tags[j].tagName %></a></span>
 										<% } %>
 								</div>
               </div>
