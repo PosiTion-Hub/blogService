@@ -13,6 +13,9 @@ body {
     font-size: 16px;
     background-color: #efefef;
 }
+.clear {
+     clear: both; 
+}
 .hljs{
 	border-radius: 5px ;
 }
@@ -38,7 +41,7 @@ body {
 }
 .homePage .wrap,.homePage .sliders,.homePage .main{
     height:100%;
-    
+    min-height: 915px;
 }
 .homePage .sliders {
     box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.9) inset;

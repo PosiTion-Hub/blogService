@@ -11,6 +11,7 @@ const pages = require('./routes/pages');
 const detail = require('./routes/pages/detail');
 const search = require('./routes/pages/search');
 const classIfyAndTags = require('./routes/pages/classIfyAndTags');
+const Record = require('./routes/pages/Record');
 
 // yemian
 //const index = require('./routes/pages/index');
@@ -58,6 +59,11 @@ app.use('/search', search);
 app.use('/classify', classIfyAndTags);
 app.use('/tags', classIfyAndTags);
 app.use('/Article', classIfyAndTags);
+
+app.use('/Record', Record);
+
+
+
 app.use('/', pages);
 //app.use('/logins', login);
 //app.use('/logout',           logout);

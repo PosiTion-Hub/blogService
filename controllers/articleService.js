@@ -100,14 +100,21 @@ class article {
 //			key: params.tag ? {tag : params.tag} : {}
 			key: params.status ==1 ? {status : 1,isDraft:0} : {}
 		}
-		if(params.tag) pageCtr.key.tag = params.tag
-		if(params.classify) pageCtr.key.classify = params.classify
+		if(params.tag) pageCtr.key['$or'] = [{"tag": new RegExp( params.tag, 'i')}] //pageCtr.key.tag = params.tag
+		if(params.classify) pageCtr.key.categories = params.classify
 		pageCtr.pageStart = pageCtr.pageSize * (pageCtr.pageCur - 1);
 		let Promis = new Promise((resolve, reject) =>{
+			
+			console.log('--------------')
+			console.log(pageCtr.key)
+			console.log('--------------')
 			articleModel.getCount(pageCtr.key, (err, result) =>{
 				if(err){
 					reject(err);
 				}else{
+					console.log('--------------')
+			console.log(result)
+			console.log('--------------')
 					resolve(result);
 				}
 			});
