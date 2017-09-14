@@ -13,7 +13,7 @@ const detail = require('./routes/pages/detail');
 const search = require('./routes/pages/search');
 const classIfyAndTags = require('./routes/pages/classIfyAndTags');
 const Record = require('./routes/pages/Record');
-const Resource = require('./routes/pages/Resource');
+const Resource = require('./routes/pages/Recource');
 const Collection = require('./routes/pages/Collection');
 const About = require('./routes/pages/About');
 

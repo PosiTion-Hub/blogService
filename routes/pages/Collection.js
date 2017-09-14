@@ -3,7 +3,7 @@ const router = express.Router(),
 	config = require("../../config");
 		
 router.get('/', (req, res, next) => {
-	res.render('TimeLine',{title:'点滴-时光鸡'});
+	res.render('Collection',{title:'收藏夹'});
 });
 	
 
