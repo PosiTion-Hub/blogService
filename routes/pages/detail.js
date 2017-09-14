@@ -31,8 +31,8 @@ router.get('/:id', (req, res, next) => {
 		res.render('details', { title: '文章详情页'});
 	})
 });
-router.get('/', (req, res) => {
-	console.log('44444444')
-	res.send('///////////////////没有参数 文章id////////////////////////////');
+router.get('/*', (req, res, next) => {
+	next();
+// res.render('404', { title: 'Express'});
 });
 module.exports = router;

@@ -49,12 +49,11 @@ router.get('/', (req, res, next) => {
 	})
 	
 	Promise.all([list, cify, tagAll]).then(values => { 
-	 	 console.log(values); // [3, 1337, "foo"] 
 	  	res.locals.artList = values[0].data;
 		res.locals.page = values[0].pageParams;
 		res.locals.classify = values[1].data;
 		res.locals.tags = values[2].data;
-		res.render('index', { title: '首页'});
+		res.render('Article', { title: '首页'});
 	  
 	  
 	});

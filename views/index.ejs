@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='/css/style.css' />
     <style>
-      /*body,html{
+      body,html{
         height:100%;
-      }*/
+      }
     </style>
   </head>
   <body class="homePage"> 
@@ -17,171 +17,40 @@
       <!-- 内容主体 -->
       <div class="main">
         <!-- 图形滚动 -->
-        <div class="wrap hide">
+        <div class="wrap ">
           <div id="wraps" class="sliders">
             <div data-num="1" class="slide hide"></div>
             <div data-num="2" class="slide hide"></div>
             <div data-num="3" class="slide hide"></div>
             <div data-num="4" class="slide hide"></div>
           </div>
-          <a href="javascript:;" id="btn-begin-blog">Let's Begin</a>
+          <a href="/Article" id="btn-begin-blog">Let's Begin</a>
         </div>
-        <!-- 主题内容 -->
-        <div class="content">
-          <div class="row container">
-          	<blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow" style="visibility: visible;">
-        
-
-			        <a href="/" title="网站首页">首页<span class="layui-box">&gt;</span></a>
-<!--			
-			        <a href="/Article" title="文章专栏">文章专栏<span class="layui-box">&gt;</span></a>
-			
-			    <a><cite>C#基础</cite></a>-->
-			
-			    </blockquote>
-          	
-            <div class="section">
-              <% var arr = [] %>
-              <% for(var i=0; i<artList.length; i++) {%>
-              <% arr.push(artList[i].articleId) %>
-              <div class="articleList">
-              		<h3 class="art-title"><a href="/detail/<%= artList[i].articleId %>"><%= artList[i].title %></a></h3>
-              		<div class="art-time"><%= (new Date(artList[i].creatDate).format("yyyy-M-d h:m:s")) %></div>
-              		
-              		<p class="art-desc"><%= artList[i].desc %></p>
-              		<div class="art-more">
-              			<a href="/detail/<%= artList[i].articleId %>">更多</a>
-              			<div class="art-tag">
-	              			<% var tt = artList[i].tag.split(',') %>
-	              			<% for(var a=0; a<tt.length;a++) {%>
-	              					<span class="tag<%= a%4 %>"><%= tt[a] %></span>
-	              			<% } %>
-	              		</div>
-              		</div>
-              </div>
-              	<% } %>
-              <ul>
-							
-							   <!--<li><%= artList[i] %></li>-->
-						
-							</ul>
-            </div>
-            <div class="aside">
-              <div class="search">
-              	<strong class="wt">关键词搜索</strong>
-              	<form class="wc" action="/search" method="get">
-                    <input type="text" class="search-text" name="keyword" value="" placeholder="请输入关键词">
-                    <input type="submit" value="搜索" class="search-btn">
-                </form>
-              </div>
-              <div class="classify">
-              	<strong class="wt">分类</strong>
-								<div class="classifyItems">
-									<% for(var j=0; j<classify.length; j++) {%>
-										<span class="classify-item"><a href="/classify?classify=<%= classify[j].classIfyName %>"><%= classify[j].classIfyName %></a></span>
-										<% } %>
-								</div>
-              	
-              </div>
-              <div class="tag classify">
-              	<strong class="wt">标签</strong>
-								<div class="classifyItems">
-									<% for(var j=0; j<tags.length; j++) {%>
-										<span class="classify-item"><a href="/tags?tag=<%= tags[j].tagName %>"><%= tags[j].tagName %></a></span>
-										<% } %>
-								</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
       </div>
-      <!-- 底部内容 -->
- 			<% include ./common/footer %>
+ 			
 	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	   
      <script type="text/javascript">
-     	localStorage.setItem('arrArt', '<%= arr %>')
-     	
-     	$('.navBar').addClass('navBg');
-            
-     	    Date.prototype.format=function(fmt='yyyy-MM-dd') {         
-    let o = {         
-    "M+" : addZero(this.getMonth()+1), //月份         
-    "d+" : addZero(this.getDate()), //日         
-    "h+" : addZero(this.getHours()),//%12 == 0 ? 12 : this.getHours()%12, //小时         
-    "H+" : addZero(this.getHours()), //小时         
-    "m+" : addZero(this.getMinutes()), //分         
-    "s+" : addZero(this.getSeconds()), //秒         
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
-    "S" : this.getMilliseconds() //毫秒         
-    };         
-    let week = {         
-    "0" : "/u65e5",         
-    "1" : "/u4e00",         
-    "2" : "/u4e8c",         
-    "3" : "/u4e09",         
-    "4" : "/u56db",         
-    "5" : "/u4e94",         
-    "6" : "/u516d"        
-    };         
-    if(/(y+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
-    }         
-    if(/(E+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[this.getDay()+""]);         
-    }         
-    for(let k in o){         
-        if(new RegExp("("+ k +")").test(fmt)){         
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
-        }         
-    }         
-    return fmt;         
-} 
-function addZero(n){
-	
-	return n > 9 ? n : '0' + n;
-	
-}
+       (function(){
+          $(function(){
+              var $wraps = $('#wraps').find('.slide');
+              var flag = 0;
+              $wraps.eq(flag).fadeIn(1000).siblings().hide();
+              move();
+              var key = setInterval(function(){
+                move();
+              },4500);
+              function move(){
+                flag = flag > $wraps.length-1 ? 0 : flag;
+                $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
+                flag++;
+              }
 
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-//     (function(){
-//        $(function(){
-//            var $wraps = $('#wraps').find('.slide');
-//            var flag = 0;
-//            $wraps.eq(flag).fadeIn(1000).siblings().hide();
-//            move();
-//            var key = setInterval(function(){
-//              move();
-//            },4500);
-//            function move(){
-//              flag = flag > $wraps.length-1 ? 0 : flag;
-//              $wraps.eq(flag).fadeIn(1000).siblings().hide(0);
-//              flag++;
-//            }
-//
-//            $('#btn-begin-blog').on('click', function(){
-//                $('.wrap').slideUp(800, function(){
-//                  clearInterval(key);
-//                });
-//                
-//                $('.navBar').addClass('navBg')
-//            });
-//
-//        })
-//     })();
+              $('#btn-begin-blog').on('click', function(){
+                 
+              });
+
+          })
+       })();
      </script>
   </body>
 </html>

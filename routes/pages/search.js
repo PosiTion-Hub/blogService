@@ -14,6 +14,9 @@ router.get('/', (req, res, next) => {
 	})
 });
 	
-
+router.get('/*', (req, res, next) => {
+	next();
+// res.render('404', { title: 'Express'});
+});
 
 module.exports = router;

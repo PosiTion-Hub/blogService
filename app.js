@@ -7,11 +7,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session'); 
 
-const pages = require('./routes/pages');
+const index = require('./routes/pages');
+const Article = require('./routes/pages/Article');
 const detail = require('./routes/pages/detail');
 const search = require('./routes/pages/search');
 const classIfyAndTags = require('./routes/pages/classIfyAndTags');
 const Record = require('./routes/pages/Record');
+const Resource = require('./routes/pages/Resource');
+const Collection = require('./routes/pages/Collection');
+const About = require('./routes/pages/About');
 
 // yemian
 //const index = require('./routes/pages/index');
@@ -25,8 +29,6 @@ const conf = require('./config');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-
-
 app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -58,13 +60,16 @@ app.use('/detail', detail);
 app.use('/search', search);
 app.use('/classify', classIfyAndTags);
 app.use('/tags', classIfyAndTags);
-app.use('/Article', classIfyAndTags);
-
+app.use('/Article', Article);
 app.use('/Record', Record);
+app.use('/Resource', Resource);
+app.use('/Collection', Collection);
+app.use('/About', About);
+app.use('/', index);
 
 
 
-app.use('/', pages);
+//app.use('/', pages);
 //app.use('/logins', login);
 //app.use('/logout',           logout);
 //app.use('/register', register);
@@ -76,10 +81,14 @@ app.use('/api', api);
 
 //app.all('/api/*', requireAuthentication);
 
+//app.get('/*', (req, res, next) => {
+//	res.render('404');
+//});	
 
 
 // 404
 app.use((req, res, next) => {
+	
   var err = new Error('Not Found');
   err.status = 404;
   res.status(404).render('404', { title: '404' });
@@ -87,15 +96,16 @@ app.use((req, res, next) => {
   next(err);
 });
 
+
 // error 错误处理函数
-app.use((err, req, res, next) => {
-	
-	console.log(req)
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.status(err.status || 500);
-  res.render('error');
-});
+//app.use((err, req, res, next) => {
+//	
+//	console.log(err )
+//res.locals.message = err.message;
+//res.locals.error = req.app.get('env') === 'development' ? err : {};
+//res.status(err.status || 500);
+//res.render('error');
+//});
 
 
 var server = app.listen(8888,()=>{
