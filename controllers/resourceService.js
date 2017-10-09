@@ -7,7 +7,13 @@ class resource {
 	}
 	add (params, callback) {
 		let domeParams = {
-			articleId: params.id
+			demoId: Date.now(),
+			demoName: params.name,
+			demoDsc: params.demoDsc,
+			demoAuth: params.demoAuth,
+			demoImg: params.demoImg,
+			demoZip: params.demoZip,
+			creatDate: params.util.curDate
 		}
 		articleModel.query(domeParams,function(err, result){
 			console.log(err, result);
