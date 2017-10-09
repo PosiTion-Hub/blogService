@@ -29,6 +29,8 @@ function PostAndGet(req, res){
 	let params = JSON.stringify(req.body) === '{}' ? req.query : req.body;
 	params.ip = req.ip;
 	//  get Class
+	
+	console.log(className,method)
 	if(!Services[`${className}Service`]){
 		res.status(404).render('404', { title: '404' });
 		return  
