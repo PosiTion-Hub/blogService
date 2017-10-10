@@ -1,4 +1,4 @@
-let	articleModel = require('../models/resourceModel'),
+let	resourceModel = require('../models/resourceModel'),
 	crypto = require('crypto'),
 	util = require('../utils')
  	config = require("../config");
@@ -15,6 +15,45 @@ class resource {
 			demoZip: params.demoZip,
 			creatDate: params.util.curDate
 		}
+		
+		let Promis = new Promise((resolve, reject) =>{
+			resourceModel.query({demoName:params.name}, (err, result) =>{
+				if(err){
+					reject(err);
+				}else{
+					resolve(result);
+				}
+			});
+		})
+		Promis.then((val)=>{
+			articleModel.pageQuery(pageCtr, (err, result)=>{
+				callback({ status: 1, pageParams, data:  result });	
+			});
+			resourceModel.insert(domeParams, (err, result)=>{
+				if(err){
+					res = { status: 0, data: '发布失败！！！'};
+					return;
+				}
+				res= { status: 1, data: result };
+				callback(res);
+			});
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		articleModel.query(domeParams,function(err, result){
 			console.log(err, result);
 			let res=  { status: 1, data: result[0] };
