@@ -65,6 +65,17 @@ app.use('/Record', Record);
 app.use('/Resource', Resource);
 app.use('/Collection', Collection);
 app.use('/About', About);
+
+
+
+
+
+
+
+const test = require('./routes/pages/test');
+
+app.use('/test', test);
+
 app.use('/', index);
 
 

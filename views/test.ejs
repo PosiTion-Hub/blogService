@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/common/rest.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common/layui.css"/>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body > 
+      <!-- 头部信息 -->
+      <% include ./common/nav %>
+      <div class="main">
+        <!-- 主题内容 -->
+        <div class="content">
+         	<div><a href="/test?pageCur=1">第一页</a></div>
+         	<div><a href="/test?pageCur=<%= (page.pageCur <= 1? 1: page.pageCur-1) %>">上一页</a></div>
+         	<div><a href="/test?pageCur=<%= (page.pageCur >= page.pageCunt? page.pageCur: page.pageCur-0+1) %>">下一页</a></div>
+         	<div><a href="/test?pageCur=<%= page.pageCunt %>">最后一页</a></div>
+         	<div>第<span><%= page.pageCur %></span>业/共<span><%= page.pageCunt %></span>页</div>
+        </div>
+        
+      </div>
+      <!-- 底部内容 -->
+       <% include ./common/footer %>
+	   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  </body>
+</html>
