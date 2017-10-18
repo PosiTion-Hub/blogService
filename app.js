@@ -19,7 +19,7 @@ const About = require('./routes/pages/About');
 
 // yemian
 //const index = require('./routes/pages/index');
-//const login = require('./routes/login'); 
+const login = require('./routes/login'); 
 //const logout = require('./routes/logout');
 //const register = require('./routes/register');
 //api
@@ -81,7 +81,7 @@ app.use('/', index);
 
 
 //app.use('/', pages);
-//app.use('/logins', login);
+app.use('/login', login);
 //app.use('/logout',           logout);
 //app.use('/register', register);
 
