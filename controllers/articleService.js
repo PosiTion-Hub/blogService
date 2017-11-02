@@ -67,8 +67,8 @@ class article {
 					callback(res);
 				}else{
 					articleParams.articleId = Date.now() //util.getDate();
-					articleParams.creatDate = util.curDate
-					
+					articleParams.creatDate = Date.now();
+					//console.log(util.curDate())	
 					// let md5 = crypto.createHash('md5');   //crypto模块功能是加密并生成各种散列
 		 		// 	let md4 = md5.update(articleParams.articleId.toString()).digest('hex');
 		 		// 	console.log(md4)

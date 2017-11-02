@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    
-    "s": "node app"
+    "s": "node app",
+    "ws": "node webSocketServer"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -15,7 +15,8 @@
     "express-session": "latest",
     "marked": "^0.3.6",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "ws": "^3.2.0"
   },
   "devDependencies": {
     "jsonwebtoken": "^7.4.1"

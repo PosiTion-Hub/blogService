@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router(),
 	config = require("../../config"),
 	marked = require('marked');
+	
 	marked.setOptions({
 	  renderer: new marked.Renderer(),
 	  gfm: true,
