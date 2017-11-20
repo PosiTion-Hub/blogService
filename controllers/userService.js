@@ -16,7 +16,7 @@ class user {
 			let res = {};
 			if(result.length>0){
 				 const token = jwt.sign({
-					uid:result[0]._id,
+					
 					name:result[0].username,
 					exp:Math.floor(Date.now()) + 60*60*1000 //1 hours
 			      }, config.secret);
