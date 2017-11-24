@@ -62,7 +62,7 @@ function PostAndGet(req, res){
 			serviceObj[method](params, result =>{
 				res.json(result);
 				return   
-			});
+			},req);
 		}else{
 			res.status(404).render('404', { title: '404' });
 		}

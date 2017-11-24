@@ -5,3 +5,4 @@ exports.classifyService              = require('./classifyService').service;
 exports.resourceService              = require('./resourceService').service;
 exports.getTicketService              = require('./getTicketService').service;
 exports.webSocketService              = require('./webSocketServer').service;
+exports.uploadService              = require('./uploadService').service;
